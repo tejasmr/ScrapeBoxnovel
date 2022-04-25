@@ -38,3 +38,17 @@ jobs:
       - name: Run main.py
         run: 
           python3 main.py
+
+      - name: Config name
+        run: git config user.name tezz-io
+
+      - name: Config email
+        run: git config user.email totejasmr@gmail.com
+
+      - name: Add
+        run: git add .
+      - name: Commit
+        run: git commit -m "Generated novels.json"
+
+      - name: Push
+        run: git push
