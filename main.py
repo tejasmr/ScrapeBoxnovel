@@ -11,7 +11,7 @@ if __name__ == "__main__":
     novel_links = json.load(open('links.json'))
     # print(novel_links)
     novels = {}
-    # print("novel count =", len(novel_links))
+    print("novel count =", len(novel_links))
     for i in range(1, len(novel_links)):
         novel_link = novel_links[i]
         novel_chapter_count = get_chapter_count(url=novel_link)

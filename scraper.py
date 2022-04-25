@@ -24,7 +24,7 @@ def collect_links(url="", links=set()):
 
 def collect_chapter_content(url=""):
     driver.get(url)
-    time.sleep(0.5)
+    # time.sleep(0.5)
     elements = driver.find_elements(by=TAG_NAME, value='p')
     output_text = ""
     for element in elements:
