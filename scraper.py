@@ -1,3 +1,4 @@
+import time
 from definitions import TAG_NAME
 from driver import driver
 from logger import log
@@ -23,6 +24,7 @@ def collect_links(url="", links=set()):
 
 def collect_chapter_content(url=""):
     driver.get(url)
+    time.sleep(0.5)
     elements = driver.find_elements(by=TAG_NAME, value='p')
     output_text = ""
     for element in elements:
@@ -38,5 +40,5 @@ def collect_chapter_content(url=""):
         if 'Translator' in text and 'Editor' in text:
             continue
         output_text += text + '\n'
-
+    print(len(output_text))
     return output_text
