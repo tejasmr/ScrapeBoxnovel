@@ -20,6 +20,8 @@ def collect_links(url="", links=set()):
             continue
         if '/page/' in link:
             continue
+        if 'oneshot' in link:
+            continue
         links.add(link)
 
 def collect_chapter_content(url=""):
