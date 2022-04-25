@@ -31,7 +31,7 @@ def scrape_boxnovel():
 def scrape_boxnovel_metadata():
     novel_links = json.load(open('links.json'))
     # print(novel_links)
-    novels = {}
+    novels = []
 
     for novel_link in novel_links:
         print(novel_link)
@@ -54,6 +54,9 @@ def scrape_boxnovel_metadata():
             count += 1
         chapter_count = count
         print(title, author, chapter_count)
+        novels.append({"title":title, "author":author, "chapter_count":chapter_count})
+    with open('novels.json', 'w') as novels_json_file:
+        novels_json_file.write(novels)
 
 if __name__ == "__main__":
     scrape_boxnovel_metadata()
