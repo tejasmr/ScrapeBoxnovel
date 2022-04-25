@@ -1,5 +1,5 @@
 import time
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 from tqdm import tqdm
 from definitions import ID, NOVEL_URL, TAG_NAME, XPATH
 from driver import driver
