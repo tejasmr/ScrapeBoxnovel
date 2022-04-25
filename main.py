@@ -1,3 +1,4 @@
+import json
 from tqdm import tqdm
 from definitions import NOVEL_URL
 from chapters import get_chapter_content_from_novel, get_chapter_count
@@ -7,7 +8,7 @@ from scraper import collect_chapter_content
 
 if __name__ == "__main__":
     # write_novel_links()
-    novel_links = open('links.json', 'r').read()
+    novel_links = json.load(open('links.json'))
     novels = {}
     for novel_link in tqdm(novel_links):
         novel_chapter_count = get_chapter_count(novel_link)
