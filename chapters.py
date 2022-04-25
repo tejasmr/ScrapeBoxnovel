@@ -5,10 +5,8 @@ from logger import log
 from scraper import collect_chapter_content
 
 def get_chapter_count(url=""):
-    log("[START] Getting chapter count...")
     driver.get(url)
-    log("[FINSH] Getting chapter count...")
-
+    
     elements = driver.find_elements(by=TAG_NAME, value='a')
     book_name = url.removeprefix(NOVEL_URL)
     count = 0

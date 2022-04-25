@@ -6,7 +6,7 @@ from driver import driver
 from scraper import collect_chapter_content
 
 if __name__ == "__main__":
-    write_novel_links()
+    # write_novel_links()
     novel_links = open('links.json', 'r').read()
     novels = {}
     for novel_link in tqdm(novel_links):
