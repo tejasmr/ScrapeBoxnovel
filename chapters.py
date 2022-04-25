@@ -6,7 +6,7 @@ from scraper import collect_chapter_content
 
 def get_chapter_count(url=""):
     driver.get(url)
-    
+
     elements = driver.find_elements(by=TAG_NAME, value='a')
     book_name = url.removeprefix(NOVEL_URL)
     count = 0
@@ -27,6 +27,6 @@ def get_chapter_content_from_novel(url=""):
     count = get_chapter_count(url)
     chapter_map = {}
     for i in tqdm(range(1, count+1)):
-        chapter_map[i] = collect_chapter_content(url + '/page/' + i)
-        
+        chapter_map[i] = collect_chapter_content(url + '/chapter-' + str(i))
+    
     return chapter_map
