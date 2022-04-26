@@ -29,6 +29,7 @@ def scrape_boxnovel():
     driver.quit()
 
 def scrape_boxnovel_metadata():
+    write_novel_links()
     novel_links = json.load(open('links.json'))
     # print(novel_links)
     novels = []
