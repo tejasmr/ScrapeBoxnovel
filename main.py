@@ -40,29 +40,34 @@ def scrape_boxnovel_metadata():
         time.sleep(2)
         title = ""
         author = ""
-        if driver.title:
-            title = driver.title.replace('BoxNovel', 'TezzNovel').replace('boxnovel', 'tezznovel').replace('BOXNOVEL', 'TEZZNOVEL')
-        author_element = driver.find_element(by=CLASS_NAME, value="author-content")
-        if author_element:
-            author_link_element = author_element.find_element(by=CSS_SELECTOR, value="a")
-            if author_link_element:
-                author = author_link_element.text
-        
-        book_name = novel_link.removeprefix(NOVEL_URL + "/").removesuffix("/")
-        elements = driver.find_elements(by=TAG_NAME, value='a')
-        count = 0
-        for element in elements:
-            link = element.get_attribute('href')
-            if link is None:
-                continue
-            if not book_name in link:
-                continue
-            if not '/chapter' in link:
-                continue
-            count += 1
-        chapter_count = count
-        print(title, author, chapter_count)
-        novels.append({"title":title, "author":author, "chapter_count":chapter_count})
+        chapter_count = 0
+        try:
+            if driver.title:
+                title = driver.title.replace('BoxNovel', 'TezzNovel').replace('boxnovel', 'tezznovel').replace('BOXNOVEL', 'TEZZNOVEL')
+            author_element = driver.find_element(by=CLASS_NAME, value="author-content")
+            if author_element:
+                author_link_element = author_element.find_element(by=CSS_SELECTOR, value="a")
+                if author_link_element:
+                    author = author_link_element.text
+
+            book_name = novel_link.removeprefix(NOVEL_URL + "/").removesuffix("/")
+            elements = driver.find_elements(by=TAG_NAME, value='a')
+            count = 0
+            for element in elements:
+                link = element.get_attribute('href')
+                if link is None:
+                    continue
+                if not book_name in link:
+                    continue
+                if not '/chapter' in link:
+                    continue
+                count += 1
+            chapter_count = count
+            print(title, author, chapter_count)
+            novels.append({"title":title, "author":author, "chapter_count":chapter_count})
+        except NoSuchElementException:
+            print(novel_link + "skippped")
+            
     with open('novels.json', 'w') as novels_json_file:
         novels_json_file.write(novels)
 
