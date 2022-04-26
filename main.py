@@ -6,6 +6,7 @@ from chapters import get_chapter_content_from_novel, get_chapter_count
 from novel_links import write_novel_links
 from driver import driver
 from scraper import collect_chapter_content
+from selenium.common.exceptions import NoSuchElementException
 
 # write_novel_links()
 def scrape_boxnovel():
