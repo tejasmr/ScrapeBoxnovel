@@ -68,9 +68,10 @@ def scrape_boxnovel_metadata():
             novels.append({"title":title, "author":author, "chapter_count":chapter_count})
         except NoSuchElementException:
             print(novel_link + "skippped")
-            
+    
+    novels_json = json.dumps(novels, indent=4)
     with open('novels.json', 'w') as novels_json_file:
-        novels_json_file.write(novels)
+        novels_json_file.write(novels_json)
 
 if __name__ == "__main__":
     scrape_boxnovel_metadata()
