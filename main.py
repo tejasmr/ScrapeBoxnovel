@@ -38,8 +38,15 @@ def scrape_boxnovel_metadata():
         print(novel_link)
         driver.get(novel_link)
         time.sleep(2)
-        title = driver.title.replace('BoxNovel', 'TezzNovel').replace('boxnovel', 'tezznovel').replace('BOXNOVEL', 'TEZZNOVEL')
-        author = driver.find_element(by=CLASS_NAME, value="author-content").find_element(by=CSS_SELECTOR, value="a").text
+        title = ""
+        author = ""
+        if driver.title:
+            title = driver.title.replace('BoxNovel', 'TezzNovel').replace('boxnovel', 'tezznovel').replace('BOXNOVEL', 'TEZZNOVEL')
+        author_element = driver.find_element(by=CLASS_NAME, value="author-content")
+        if author_element:
+            author_link_element = author_element.find_element(by=CSS_SELECTOR, value="a")
+            if author_link_element:
+                author = author_link_element.text
         
         book_name = novel_link.removeprefix(NOVEL_URL + "/").removesuffix("/")
         elements = driver.find_elements(by=TAG_NAME, value='a')
